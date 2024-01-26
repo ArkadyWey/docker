@@ -1,9 +1,13 @@
-# We need to start with a base image
+# this is the base image we are starting from
+FROM python:3
 
-# we need to copy our requirements
+# copy a file from local to current
+COPY shop_api /shop_api
 
-# we need to install our requirements
+# run your commands
+RUN pip install /shop_api
 
-# we need to copy our code
-
-# we need to tell docker what command to run
+# This is the command that is run inside our image when
+# we run `docker run <my image>`
+WORKDIR /shop_api
+CMD ["uvicorn", "shop_api.main:app", "--host", "0.0.0.0"]
