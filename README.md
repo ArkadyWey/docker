@@ -25,3 +25,33 @@ We have code that works localy, lets also try and get it working in docker. Star
 Once you are happy try building the image with `docker build -t shop_api .`
 
 Once you are happy with your image run it with `docker run shop_api`
+
+Things to consider:
+
+- Even though we were using poetry locall, you can do a `pip install .` too
+- Do we need to change the command? Play arround
+- Can you not see the api in your browser? Have you tought about networking?
+
+# Part 2 - What about state?
+
+We have an api but we are dealing with state weird. We are keeping it in memory. So if our application dies, we lose all that info. Lets do one better and save it outside of the container as a json file.
+
+- Mount a volume
+- try stopping and starting the container, does the state persist?
+- At this stage there are probably too many arguments. Try putting it in a docker compose file
+
+# Part 3 - Multi Containers
+
+A more realistic setup is to perhaps use a DB. Lets configure Redis.
+
+- Add Redis to your docker compose
+- How does networking between redis and your api work?
+- Set Redis to have auth, how do we set auth info, and how do we pass auth info to our app?
+
+# Part 4 - Minikube
+
+Let's have a go at moving our application to kuberentes. We can start with Minikube, which is a locally hosted kuberentes service. Lets initially focus on getting all installed and running locally, and run the [hello world example](https://minikube.sigs.k8s.io/docs/start/).
+
+- Lets write a minimal .yaml file for our application (First the version with no Redis)
+- Now the .json saving version with mounting filesystem
+- Now spinning up a Redis DB
