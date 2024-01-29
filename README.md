@@ -32,6 +32,11 @@ Things to consider:
 - Do we need to change the command? Play arround
 - Can you not see the api in your browser? Have you tought about networking?
 
+### Push image to gitlab
+
+Now that we have created an image, we can push it to gitlab. Usually we have CICD to build our images. Lets do a manual push for now.
+
+
 # Part 2 - What about state?
 
 We have an api but we are dealing with state weird. We are keeping it in memory. So if our application dies, we lose all that info. Lets do one better and save it outside of the container as a json file.
